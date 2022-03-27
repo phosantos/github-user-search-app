@@ -21,49 +21,73 @@ async function searchUser(gitHubUsername) {
   );
   const userBody = await gitHubUserResponse.json();
 
-  profileImg.src = userBody.avatar_url;
-  nameDisplay.innerText = userBody.name;
-  username.innerText = "@" + userBody.login;
+  function joinedDate() {
+    const dateJoinedYear = userBody.created_at.slice(0, 4);
+    const dateJoinedDay = userBody.created_at.slice(8, 10);
+    const dateJoinedMonth = userBody.created_at.slice(6, 7);
+    const monthNames = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+    joined.innerText = `Joined ${dateJoinedDay} ${
+      monthNames[dateJoinedMonth - 1]
+    } ${dateJoinedYear}`;
+  }
+
+  function handleInnerText(element, userBodyProperty) {
+    if (userBody[userBodyProperty] != null) {
+      element.innerText = userBody[userBodyProperty];
+    } else {
+      element.innerText = "Not Available";
+    }
+  }
+
+  function handleInnerHTML(element, userBodyProperty, content) {
+    if (userBody[userBodyProperty]) {
+      element.innerHTML = content;
+    } else {
+      element.innerText = "Not Available";
+    }
+  }
+
   username.href = `https://github.com/${userBody.login}`;
+  profileImg.src = userBody.avatar_url;
 
-  repos.innerText = userBody.public_repos;
-  followers.innerText = userBody.followers;
-  following.innerText = userBody.following;
+  joinedDate();
 
-  if (userBody.bio) bio.innerText = userBody.bio;
-  if (userBody.blog)
-    blog.innerHTML = `<a href="${userBody.blog}">${userBody.blog}</a>`;
-  if (userBody.company) company.innerText = userBody.company;
-  if (userBody.twitter_username)
-    twitter.innerHTML = `<a href="https://twitter.com/${userBody.twitter_username}">${userBody.twitter_username}</a>`;
-  if (userBody.location) locationDisplay.innerText = userBody.location;
+  handleInnerText(nameDisplay, "name");
+  handleInnerText(bio, "bio");
+  handleInnerText(repos, "public_repos");
+  handleInnerText(followers, "followers");
+  handleInnerText(following, "following");
+  handleInnerText(company, "company");
+  handleInnerText(locationDisplay, "location");
 
-  const dateJoinedYear = userBody.created_at.slice(0, 4);
-  const dateJoinedDay = userBody.created_at.slice(8, 10);
-  const dateJoinedMonth = userBody.created_at.slice(6, 7);
-  const monthNames = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
-
-  joined.innerText = `Joined ${dateJoinedDay} ${
-    monthNames[dateJoinedMonth - 1]
-  } ${dateJoinedYear}`;
+  handleInnerHTML(username, "login", `@${userBody.login}`);
+  handleInnerHTML(
+    blog,
+    "blog",
+    `<a href="${userBody.blog}">${userBody.blog}</a>`
+  );
+  handleInnerHTML(
+    twitter,
+    "twitter_username",
+    `<a href="https://twitter.com/${userBody.twitter_username}">${userBody.twitter_username}</a>`
+  );
 }
 
 function handleClick() {
   const user = document.querySelector(".search-box input").value;
-
   searchUser(user);
 }
 
