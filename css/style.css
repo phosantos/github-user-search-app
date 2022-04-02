@@ -95,6 +95,7 @@ body {
   height: 80px;
   background-color: var(--grey);
   border-radius: 50%;
+  border: 2px solid var(--blue);
 }
 
 .profile-img img {
@@ -222,4 +223,40 @@ body {
   height: 16px;
   width: 16px;
   background-image: url("../img/company.svg");
+}
+
+/* mobile */
+@media (max-width: 650px) {
+  .search-box,
+  .profile-box {
+    width: 350px;
+  }
+  .profile-img {
+    width: 100px;
+    height: 100px;
+    justify-self: center;
+  }
+  .profile-box {
+    grid-template-columns: 1fr;
+    padding: 25px;
+  }
+
+  .profile-info {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-info .joined {
+    grid-column: 1;
+    text-align: initial;
+    margin-top: 10px;
+  }
+  .profile-info .numbers {
+    grid-column: 1/-1;
+    max-width: 300px;
+  }
+
+  .profile-info .socials {
+    width: 300px;
+    grid-template-columns: 1fr;
+  }
 }
