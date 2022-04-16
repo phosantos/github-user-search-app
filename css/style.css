@@ -253,10 +253,21 @@ body {
 @media (max-width: 650px) {
   .title {
     font-size: 1.3rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .search-box {
+    padding: 10px;
   }
   .search-box,
   .profile-box, .not-found-status {
-    width: 350px;
+    width: 320px;
+  }
+  .profile-box, .not-found-status {
+    margin-bottom: 20px;
+  }
+  .search-box input::placeholder {
+    opacity: 0;
   }
   .profile-img {
     width: 100px;
@@ -265,7 +276,7 @@ body {
   }
   .profile-box.active {
     grid-template-columns: 1fr;
-    padding: 25px;
+    padding: 20px;
   }
 
   .profile-info {
@@ -279,11 +290,11 @@ body {
   }
   .profile-info .numbers {
     grid-column: 1/-1;
-    max-width: 300px;
+    max-width: 280px;
   }
 
   .profile-info .socials {
-    width: 300px;
+    width: 280px;
     grid-template-columns: 1fr;
   }
 }

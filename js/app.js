@@ -43,9 +43,9 @@ async function searchUser(gitHubUsername) {
     userInfoVerification(following, 'following');
     userInfoVerification(company, 'company');
     userInfoVerification(userLocation, 'location');
-    userInfoVerification(username, 'login');
     userInfoVerification(blog, 'blog');
     userInfoVerification(twitter, 'twitter_username');
+    username.innerText = `@${userBody.login}`;
     joinedDate.innerText = `Joined ${formatJoinedDate(userBody.created_at)}`;
     username.href = `https://github.com/${userBody.login}`;
     blog.href = userBody.blog;
@@ -57,10 +57,10 @@ async function searchUser(gitHubUsername) {
   }
 }
 
-function handleClick() {
+function onSearch() {
   const user = document.querySelector('.search-box input').value;
   notFoundStatus.classList.remove('active');
   searchUser(user);
 }
 
-searchBtn.addEventListener('click', handleClick);
+searchBtn.addEventListener('click', onSearch);
