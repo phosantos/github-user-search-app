@@ -1,0 +1,28 @@
+{
+  "name": "github-user-search-app",
+  "version": "1.0.0",
+  "description": "Github user search app developed with HTML, CSS and JavaScript. In JavaScript I used fetch and the Github API.",
+  "main": "script.js",
+  "scripts": {
+    "dev": "webpack --mode development --watch --entry ./js/app.js -o ./",
+    "build": "webpack --mode production --entry ./js/app.js -o ./"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phosantos/github-user-search-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/phosantos/github-user-search-app/issues"
+  },
+  "homepage": "https://github.com/phosantos/github-user-search-app#readme",
+  "devDependencies": {
+    "eslint-config-prettier": "^8.5.0",
+    "eslint": "^8.13.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.9.2"
+  }
+}
