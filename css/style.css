@@ -41,8 +41,18 @@ body {
   font-family: "IBM Plex Mono";
 }
 
-.search-box,
+.title {
+  color: white;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
 .profile-box {
+  display: none;
+}
+
+.search-box,
+.profile-box,.not-found-status {
   box-sizing: border-box;
   background: var(--background-2);
   width: 600px;
@@ -80,10 +90,10 @@ body {
 }
 
 .search-box button:hover {
-  box-shadow: 0px 0px 10px#1f6feb;
+  box-shadow: 0px 0px 10px #1f6feb;
 }
 
-.profile-box {
+.profile-box.active {
   display: grid;
   grid-template-columns: auto 1fr;
   padding: 50px;
@@ -225,10 +235,27 @@ body {
   background-image: url("../img/company.svg");
 }
 
+.not-found-status {
+  height: 100px;
+  color: var(--white);
+  font-size: 1.5rem;
+  display: none;
+  align-items: center;
+  justify-content: center;
+} 
+
+ .not-found-status.active{
+  display: flex;
+}
+
+
 /* mobile */
 @media (max-width: 650px) {
+  .title {
+    font-size: 1.3rem;
+  }
   .search-box,
-  .profile-box {
+  .profile-box, .not-found-status {
     width: 350px;
   }
   .profile-img {
@@ -236,7 +263,7 @@ body {
     height: 100px;
     justify-self: center;
   }
-  .profile-box {
+  .profile-box.active {
     grid-template-columns: 1fr;
     padding: 25px;
   }
@@ -260,3 +287,4 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
