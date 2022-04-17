@@ -10,9 +10,9 @@ const repos = document.querySelector('.repos p');
 const followers = document.querySelector('.followers p');
 const following = document.querySelector('.following p');
 const userLocation = document.querySelector('.location');
-const blog = document.querySelector('.blog a');
+const blog = document.querySelector('.blog');
 const company = document.querySelector('.company');
-const twitter = document.querySelector('.twitter a');
+const twitter = document.querySelector('.twitter');
 let userBody;
 
 function formatJoinedDate(userBodyDate) {
@@ -43,14 +43,22 @@ async function searchUser(gitHubUsername) {
     userInfoVerification(following, 'following');
     userInfoVerification(company, 'company');
     userInfoVerification(userLocation, 'location');
-    userInfoVerification(blog, 'blog');
-    userInfoVerification(twitter, 'twitter_username');
+
     username.innerText = `@${userBody.login}`;
-    joinedDate.innerText = `Joined ${formatJoinedDate(userBody.created_at)}`;
     username.href = `https://github.com/${userBody.login}`;
-    blog.href = userBody.blog;
+    joinedDate.innerText = `Joined ${formatJoinedDate(userBody.created_at)}`;
     profileImg.src = userBody.avatar_url;
-    twitter.href = `https://twitter.com/${userBody.twitter_username}`;
+
+    if (userBody.blog) {
+      blog.innerHTML = `<a href="${userBody.blog}">${userBody.blog}</a>`;
+    } else {
+      blog.innerText = 'Not Available';
+    }
+    if (userBody.twitter_username) {
+      twitter.innerHTML = `<a href="https://twitter.com/${userBody.twitter_username}">@${userBody.twitter_username}</a>`;
+    } else {
+      twitter.innerText = 'Not Available';
+    }
   } else {
     profileBox.classList.remove('active');
     notFoundStatus.classList.add('active');
